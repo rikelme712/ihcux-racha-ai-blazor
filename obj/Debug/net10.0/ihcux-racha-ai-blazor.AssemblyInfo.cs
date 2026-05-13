@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ihcux-racha-ai-blazor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d66d4dd0d35198e76fb9959b7a1ce411eccb6f33")]
 [assembly: System.Reflection.AssemblyProductAttribute("ihcux-racha-ai-blazor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ihcux-racha-ai-blazor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
