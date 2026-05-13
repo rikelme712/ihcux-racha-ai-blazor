@@ -1,0 +1,110 @@
+@page "/dashboard"
+
+@using ihcux_racha_ai_blazor.Models
+@using ihcux_racha_ai_blazor.Components
+
+<h2 class="mb-4">Olá, Rick! 👋</h2>
+
+<div class="row mb-4">
+
+    <div class="col-md-4">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h6>Saldo Geral</h6>
+                <h3>R$ 798,60</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h6>A Receber</h6>
+                <h3 class="text-success">R$ 1285,00</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h6>A Pagar</h6>
+                <h3 class="text-danger">R$ 486,40</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="d-flex justify-content-between mb-3">
+    <h5>SEUS GRUPOS ATIVOS</h5>
+
+    <button class="btn btn-primary">
+        Novo Gasto
+    </button>
+</div>
+
+<input class="form-control mb-4"
+       placeholder="Buscar grupo ou categoria..."
+       @bind="busca"
+       @bind:event="oninput" />
+
+@if (GruposFiltrados.Any())
+{
+    @foreach (var grupo in GruposFiltrados)
+    {
+        <GrupoCard Grupo="grupo" />
+    }
+}
+else
+{
+    <div class="alert alert-secondary">
+        Você ainda não participa de nenhum grupo.
+    </div>
+}
+
+@code {
+
+    string busca = "";
+
+    List<Grupo> grupos = new()
+    {
+        new Grupo
+        {
+            Nome = "República Central",
+            Categoria = "Casa",
+            ValorPendente = 450.50m,
+            NoVermelho = true
+        },
+
+        new Grupo
+        {
+            Nome = "Churrasco de Domingo",
+            Categoria = "Lazer",
+            ValorPendente = 85.00m,
+            NoVermelho = false
+        },
+
+        new Grupo
+        {
+            Nome = "Viagem Floripa",
+            Categoria = "Viagem",
+            ValorPendente = 1200.00m,
+            NoVermelho = false
+        },
+
+        new Grupo
+        {
+            Nome = "Netflix & Internet",
+            Categoria = "Contas",
+            ValorPendente = 35.90m,
+            NoVermelho = true
+        }
+    };
+
+    List<Grupo> GruposFiltrados =>
+        grupos.Where(g =>
+            g.Nome.Contains(busca, StringComparison.OrdinalIgnoreCase)
+            || g.Categoria.Contains(busca, StringComparison.OrdinalIgnoreCase)
+        ).ToList();
+}
